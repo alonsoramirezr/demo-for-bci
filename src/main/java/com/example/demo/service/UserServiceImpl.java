@@ -39,12 +39,12 @@ public class UserServiceImpl implements UserService{
 
         try {
             if (userRepository.emailExist(user.getEmail()) >= 1) {
-                response.setCode(500);
+                response.setCode(400);
                 response.setMessage("email already exists");
                 return response;
             }
             if (!(utils.validateEmail(user.getEmail()) && utils.validatePassword(user.getPassword()))) {
-                response.setCode(500);
+                response.setCode(400);
                 response.setMessage("email or password is not valid");
                 return response;
             }
@@ -61,7 +61,7 @@ public class UserServiceImpl implements UserService{
             response.setCode(200);
             response.setUsuario(user);
         } catch (Exception e) {
-            response.setCode(500);
+            response.setCode(400);
             response.setMessage(e.getMessage());
         }
         return response;
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService{
         try {
             Optional<User> userFromDb = userRepository.findById(id);
             if (!userFromDb.isPresent()) {
-                response.setCode(500);
+                response.setCode(400);
                 response.setMessage("user doesn't exist");
                 return response;
             }
@@ -84,19 +84,19 @@ public class UserServiceImpl implements UserService{
                 if (userExists.isPresent()) {
                     User userObtainedWithEmail = userExists.get();
                     if (!userObtainedWithEmail.getId().equalsIgnoreCase(userCaptured.getId())) {
-                        response.setCode(500);
+                        response.setCode(400);
                         response.setMessage("email is already taken");
                         return response;
                     }
                 } else {
-                    response.setCode(500);
+                    response.setCode(400);
                     response.setMessage("email is already taken");
                     return response;
                 }
             }
 
             if (!(utils.validateEmail(request.getEmail()) && utils.validatePassword(request.getPassword()))) {
-                response.setCode(500);
+                response.setCode(400);
                 response.setMessage("email or password is not valid");
                 return response;
             }
@@ -111,7 +111,7 @@ public class UserServiceImpl implements UserService{
             response.setUsuario(userCaptured);
 
         } catch (Exception e) {
-            response.setCode(500);
+            response.setCode(400);
             response.setMessage(e.getMessage());
         }
         return response;

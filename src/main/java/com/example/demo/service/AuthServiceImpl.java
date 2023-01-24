@@ -50,15 +50,15 @@ public class AuthServiceImpl implements AuthService{
                     response = ResponseEntity.ok(new JwtResponse(jwt, userDetails.getUsername()));
                 } else {
                     return new ResponseEntity<>(new ResponseError(401, "user is not active"),
-                            HttpStatus.BAD_REQUEST);
+                            HttpStatus.UNAUTHORIZED);
                 }
             } else {
                 return new ResponseEntity<>(new ResponseError(401, "user doesn't exist"),
-                        HttpStatus.BAD_REQUEST);
+                        HttpStatus.UNAUTHORIZED);
             }
         } catch (Exception e){
             return new ResponseEntity<>(new ResponseError(401, e.getMessage()),
-                    HttpStatus.BAD_REQUEST);
+                    HttpStatus.UNAUTHORIZED);
         }
        return response;
     }
