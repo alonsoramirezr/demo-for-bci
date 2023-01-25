@@ -7,6 +7,11 @@ Uso exclusivo para evaluación de BCI
 3. Java 1.8 o superior
 4. Postman
 
+# Colección de Postman
+La colección de postman se encuentra dentro del proyecto en una carpeta llamada postman.
+Esta colección puede ser importada a su postman de manera local y poder probar de esa manera.
+
+
 # Tecnologias utilizadas para el desarrollo del proyecto
 1. Springboot 2.7.9-SNAPSHOT
 2. Java 11
